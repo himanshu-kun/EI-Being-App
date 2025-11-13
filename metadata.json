@@ -1,0 +1,5 @@
+{
+  "name": "EI Being",
+  "description": "A web application to help users boost their emotional awareness and regulation by periodically logging their feelings, physical state, and regulation strategies. It provides insights into emotional patterns over time through visualizations.",
+  "requestFramePermissions": []
+}
