@@ -37,7 +37,13 @@ const calculateStandardDeviation = (arr: number[]): number => {
 
 // --- Main Insights Component ---
 
-const InsightsPage: React.FC<{ entries: EmotionEntry[], onBack: () => void }> = ({ entries, onBack }) => {
+interface InsightsPageProps {
+  entries: EmotionEntry[];
+  onBack: () => void;
+  onViewAiAnalysis?: () => void;
+}
+
+const InsightsPage: React.FC<InsightsPageProps> = ({ entries, onBack, onViewAiAnalysis }) => {
   const [timePeriod, setTimePeriod] = useState<TimePeriod>('7d');
 
   const { filteredEntries, periodDuration } = useMemo(() => {
@@ -330,11 +336,24 @@ const InsightsPage: React.FC<{ entries: EmotionEntry[], onBack: () => void }> = 
 
   return (
     <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg animate-fade-in">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Your Emotional Insights</h2>
-        <button onClick={onBack} className="text-indigo-600 dark:text-indigo-400 hover:underline font-medium">
-          Back
-        </button>
+      <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3 mb-6">
+        <div>
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Your Emotional Insights</h2>
+          <p className="text-xs text-gray-500 dark:text-gray-400">Frequency and volatility metrics</p>
+        </div>
+        <div className="flex items-center gap-3">
+          {onViewAiAnalysis && (
+            <button
+              onClick={onViewAiAnalysis}
+              className="px-3 py-1.5 text-xs font-bold rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-700 hover:to-indigo-700 transition flex items-center gap-1.5 shadow-xs"
+            >
+              <span>✨ AI Triggers & Remedies</span>
+            </button>
+          )}
+          <button onClick={onBack} className="text-indigo-600 dark:text-indigo-400 hover:underline font-medium text-sm">
+            Back
+          </button>
+        </div>
       </div>
       
       <div className="flex flex-wrap justify-center sm:justify-start gap-2 mb-4">

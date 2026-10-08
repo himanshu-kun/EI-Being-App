@@ -53,10 +53,18 @@ const ViewEntryPage: React.FC<ViewEntryPageProps> = ({ entry, onBack }) => {
       </div>
 
       {entry.regulation && (
-        <div>
-          <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">How you thought of managing the feeling</h3>
-          <p className="text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
+        <div className="bg-emerald-50/60 dark:bg-emerald-950/20 border border-emerald-200/80 dark:border-emerald-800/60 rounded-xl p-4 space-y-2">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-500" />
+            <h3 className="text-sm font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-300">
+              Personal Stabilizing Remedy (Coping Bank)
+            </h3>
+          </div>
+          <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
             {entry.regulation}
+          </p>
+          <p className="text-[11px] text-gray-500 dark:text-gray-400 italic">
+            This strategy is cataloged for your AI Triggers & Remedies recommendations when you experience similar emotions.
           </p>
         </div>
       )}
