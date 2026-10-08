@@ -9,6 +9,7 @@ interface NewEntryFlowProps {
   onSave: (entry: EmotionEntry) => void;
   onCancel: () => void;
   existingEntry?: EmotionEntry | null;
+  pastEntries?: EmotionEntry[];
 }
 
 const ProgressBar: React.FC<{ step: number; totalSteps: number }> = ({ step, totalSteps }) => (
@@ -21,7 +22,7 @@ const ProgressBar: React.FC<{ step: number; totalSteps: number }> = ({ step, tot
 );
 
 
-const NewEntryFlow: React.FC<NewEntryFlowProps> = ({ onSave, onCancel, existingEntry }) => {
+const NewEntryFlow: React.FC<NewEntryFlowProps> = ({ onSave, onCancel, existingEntry, pastEntries = [] }) => {
   const [step, setStep] = useState(1);
   const [selectedEmotions, setSelectedEmotions] = useState<Emotion[]>([]);
   const [cause, setCause] = useState('');
@@ -91,6 +92,9 @@ const NewEntryFlow: React.FC<NewEntryFlowProps> = ({ onSave, onCancel, existingE
             onSave={handleSaveRegulation}
             onSkip={handleSkipRegulation}
             onBack={() => setStep(2)}
+            selectedEmotions={selectedEmotions}
+            cause={cause}
+            pastEntries={pastEntries}
             />
         )}
     </div>
